@@ -51,7 +51,6 @@
             }
         }
 
-        /* адаптация под телефон */
         @media (max-width: 600px) {
             .text {
                 font-size: 10px;
@@ -85,7 +84,6 @@
             return { x, y };
         }
 
-        // создаём хаос
         for (let i = 0; i < 160; i++) {
             const el = document.createElement("div");
             el.className = "text";
@@ -98,7 +96,6 @@
             elements.push(el);
         }
 
-        // сборка
         function assemble() {
             elements.forEach((el, i) => {
                 const t = (i / elements.length) * Math.PI * 2;
@@ -115,7 +112,6 @@
             });
         }
 
-        // взрыв
         function explode() {
             elements.forEach(el => {
                 el.classList.remove("alive");
@@ -127,7 +123,6 @@
             });
         }
 
-        // цикл
         function loop() {
             assemble();
 
@@ -140,23 +135,18 @@
             }, 13000);
         }
 
-        // автостарт
         loop();
 
-        // музыка (если разрешено)
         music.volume = 0.6;
         music.preload = "auto";
 
-        // пробуем автостарт
         function tryPlay() {
-            music.currentTime = 60; // <-- тут можешь подогнать момент
+            music.currentTime = 60;
             music.play().catch(() => { });
         }
 
-        // сразу пробуем
         tryPlay();
 
-        // хитрый обход — ловим ЛЮБОЕ действие пользователя
         ["click", "touchstart", "mousemove", "scroll"].forEach(event => {
             document.addEventListener(event, () => {
                 tryPlay();
